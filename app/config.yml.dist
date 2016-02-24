@@ -1,0 +1,10 @@
+yelp:
+    api_keys:
+        consumer_key: ~
+        consumer_secret: ~
+        token: ~
+        token_secret: ~
+    search:
+        location: Milano
+        limit: 3
+    api_host: api.yelp.com

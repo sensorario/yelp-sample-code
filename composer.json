@@ -1,0 +1,10 @@
+{
+    "require": {
+        "symfony/yaml": "^3.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
