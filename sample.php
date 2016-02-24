@@ -11,6 +11,9 @@ $filename = 'app/config.yml';
 $fileContent = file_get_contents($filename);
 $config = Yaml::parse($fileContent);
 
+$yelpRequest = YelpRequest::fromConfiguration($config);
+
+// search some stuffs ...
 $queryString = http_build_query([
     'category_filter' => 'pubs',
     'cc'              => 'IT',
@@ -19,36 +22,23 @@ $queryString = http_build_query([
     'location'        => $config['yelp']['search']['location'],
     'term'            => 'ghost',
 ]);
-
-$response = YelpRequest::withHostPathAndConfig(
-    $apiHost    = $config['yelp']['api_host'],
-    $searchPath = '/v2/search/' . "?" . $queryString,
-    $config
-);
-
-$response = json_decode(
-    $response
-);
-
-$businessId = $response->businesses[0]->id;
-
+$response = $yelpRequest->withSearchPath($searchPath = '/v2/search/' . "?" . $queryString);
+$jsonResponse = json_decode($response);
+$businessId = $jsonResponse->businesses[0]->id;
 print sprintf(
     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-    count($response->businesses),
+    count($jsonResponse->businesses),
     $businessId
 );
 
-$response = YelpRequest::withHostPathAndConfig(
-    $config['yelp']['api_host'],
-    '/v2/business/' . $businessId,
-    $config
-);
-
+// ask for business informations
+$response = $yelpRequest->withSearchPath('/v2/business/' . $businessId);
 print sprintf(
     "Result for business \"%s\" found:\n",
     $businessId
 );
 
+// view response
 print_r(
     json_decode(
         $response

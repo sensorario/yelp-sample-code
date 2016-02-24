@@ -9,21 +9,31 @@ use OAuthRequest;
 
 final class YelpRequest
 {
-    public static function withHostPathAndConfig(
-        $host,
-        $path,
-        $config
-    ) {
-        $unsignedUrl = "https://" . $host . $path;
+    private $config;
+
+    private function __construct(array $config) {
+        $this->config = $config;
+    }
+
+    public static function fromConfiguration(array $config) {
+        return new self(
+            $config
+        );
+    }
+
+    public function withSearchPath($searchPath) {
+        $host = $this->config['yelp']['api_host'];
+
+        $unsignedUrl = "https://" . $host . $searchPath;
 
         $token = new OAuthToken(
-            $config['yelp']['api_keys']['token'],
-            $config['yelp']['api_keys']['token_secret']
+            $this->config['yelp']['api_keys']['token'],
+            $this->config['yelp']['api_keys']['token_secret']
         );
 
         $consumer = new OAuthConsumer(
-            $config['yelp']['api_keys']['consumer_key'],
-            $config['yelp']['api_keys']['consumer_secret']
+            $this->config['yelp']['api_keys']['consumer_key'],
+            $this->config['yelp']['api_keys']['consumer_secret']
         );
 
         $signatureMethod = new OAuthSignatureMethod_HMAC_SHA1();
