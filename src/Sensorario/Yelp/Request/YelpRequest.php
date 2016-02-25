@@ -52,10 +52,10 @@ final class YelpRequest
             $token
         );
         
-        $signed_url = $oauthrequest->to_url();
+        $url = $oauthrequest->to_url();
         
         try {
-            $ch = curl_init($signed_url);
+            $ch = curl_init($url);
 
             if (FALSE === $ch) {
                 throw new Exception(
