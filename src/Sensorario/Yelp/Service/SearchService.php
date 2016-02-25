@@ -2,6 +2,7 @@
 
 namespace Sensorario\Yelp\Service;
 
+use Sensorario\Yelp\Interfaces\Path;
 use Sensorario\Yelp\Request\YelpRequest;
 use Sensorario\Yelp\Response\YelpResponse;
 
@@ -21,21 +22,12 @@ final class SearchService
         ]);
     }
 
-    public function genericSearch(YelpRequest $yelpRequest)
-    {
-        $queryString = http_build_query([
-            'category_filter' => 'pubs',
-            'cc'              => 'IT',
-            'lang'            => 'it',
-            'limit'           => $this->properties['config']['yelp']['search']['limit'],
-            'location'        => $this->properties['config']['yelp']['search']['location'],
-            'term'            => 'ghost',
-        ]);
-
-        $searchPath = $searchPath = '/v2/search/' . "?" . $queryString;
-
+    public function search(
+        YelpRequest $yelpRequest,
+        Path $path
+    ) {
         return YelpResponse::fromHttpResponse(
-            $yelpRequest->withSearchPath($searchPath)
+            $yelpRequest->withPath($path->getPath())
         );
     }
 }

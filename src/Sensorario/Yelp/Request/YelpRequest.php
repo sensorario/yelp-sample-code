@@ -22,10 +22,10 @@ final class YelpRequest
         );
     }
 
-    public function withSearchPath($searchPath) {
+    public function withPath($path) {
         $host = $this->config['yelp']['api_host'];
 
-        $unsignedUrl = "https://" . $host . $searchPath;
+        $unsignedUrl = "https://" . $host . $path;
 
         $token = new OAuthToken(
             $this->config['yelp']['api_keys']['token'],
