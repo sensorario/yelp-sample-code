@@ -35,4 +35,11 @@ final class SearchPathFactory
             $searchPath = '/v2/search/' . "?" . $queryString
         );
     }
+
+    public function buildBusinessSearch($businessId)
+    {
+        return SearchPath::withString(
+            $businessItem = '/v2/business/' . $businessId
+        );
+    }
 }

@@ -18,6 +18,12 @@ final class YelpResponse
         ]);
     }
 
+    public function getContent()
+    {
+        return $this
+            ->properties['jsonResponse'];
+    }
+
     public function currentBusinessId()
     {
         return $this
