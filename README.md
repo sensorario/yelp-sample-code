@@ -18,3 +18,9 @@ yelp:
         limit: 3
     api_host: api.yelp.com
 ```
+
+### Run sample code
+
+```bash
+php scripts/sample.php
+```
