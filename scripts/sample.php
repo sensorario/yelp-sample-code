@@ -4,24 +4,16 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
-use Sensorario\Yelp\Request\YelpRequest;
-use Sensorario\Yelp\Response\YelpResponse;
-use Sensorario\Yelp\Service\SearchPathFactory;
-use Sensorario\Yelp\Service\SearchService;
+use Sensorario\Yelp\Service\Finder;
 use Symfony\Component\Yaml\Yaml;
 
 $filename = 'app/config.yml';
 $fileContent = file_get_contents($filename);
 $config = Yaml::parse($fileContent);
 
-$yelpRequest = YelpRequest::fromConfiguration($config);
-$searchService = SearchService::fromConfiguration($config);
-$searchFactory = SearchPathFactory::fromConfiguration($config);
+$finder = new Finder($config);
 
-$yelpResponse = $searchService->search(
-    $yelpRequest,
-    $searchFactory->buildGenericSearch()
-);
+$yelpResponse = $finder->genericSearch();
 
 print sprintf(
     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
@@ -29,19 +21,16 @@ print sprintf(
     $businessId = $yelpResponse->getContent()->businesses[0]->id
 );
 
-$yelpResponse = $searchService->search(
-    $yelpRequest,
-    $searchFactory->buildBusinessSearch(
-        $businessId
-    )
-);
-
 print sprintf(
     "Result for business \"%s\" found:\n",
     $businessId
 );
 
-// view response
-print_r(
-    $yelpResponse->getContent()
+$yelpResponse = $finder->businessSearch($businessId);
+
+print sprintf(
+    print_r(
+        $yelpResponse->getContent(),
+        true
+    )
 );
