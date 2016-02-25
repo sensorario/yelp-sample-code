@@ -7,7 +7,7 @@ use Sensorario\Yelp\YelpResponse;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
 
-final class Finder
+final class FinderService
 {
     private $collaborators = [
         'yelpRequest',

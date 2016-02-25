@@ -4,14 +4,16 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
-use Sensorario\Yelp\Finder;
+use Sensorario\Yelp\FinderService;
 use Symfony\Component\Yaml\Yaml;
 
-$filename = 'app/config.yml';
-$fileContent = file_get_contents($filename);
-$config = Yaml::parse($fileContent);
-
-$finder = new Finder($config);
+$finder = new FinderService(
+    Yaml::parse(
+        file_get_contents(
+            'app/config.yml'
+        )
+    )
+);
 
 $yelpResponse = $finder->genericSearch();
 
