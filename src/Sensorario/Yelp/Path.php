@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorario\Yelp\Interfaces;
+namespace Sensorario\Yelp;
 
 interface Path
 {

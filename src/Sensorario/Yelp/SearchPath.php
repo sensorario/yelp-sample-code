@@ -1,8 +1,8 @@
 <?php
 
-namespace Sensorario\Yelp\Objects;
+namespace Sensorario\Yelp;
 
-use Sensorario\Yelp\Interfaces\Path;
+use Sensorario\Yelp\Path;
 
 final class SearchPath implements Path
 {

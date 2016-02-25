@@ -1,8 +1,8 @@
 <?php
 
-namespace Sensorario\Yelp\Service;
+namespace Sensorario\Yelp;
 
-use Sensorario\Yelp\Objects\SearchPath;
+use Sensorario\Yelp\SearchPath;
 
 final class SearchPathFactory
 {

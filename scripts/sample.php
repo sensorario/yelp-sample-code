@@ -4,7 +4,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
-use Sensorario\Yelp\Service\Finder;
+use Sensorario\Yelp\Finder;
 use Symfony\Component\Yaml\Yaml;
 
 $filename = 'app/config.yml';

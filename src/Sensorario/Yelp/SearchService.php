@@ -1,10 +1,10 @@
 <?php
 
-namespace Sensorario\Yelp\Service;
+namespace Sensorario\Yelp;
 
-use Sensorario\Yelp\Interfaces\Path;
-use Sensorario\Yelp\Request\YelpRequest;
-use Sensorario\Yelp\Response\YelpResponse;
+use Sensorario\Yelp\Path;
+use Sensorario\Yelp\YelpRequest;
+use Sensorario\Yelp\YelpResponse;
 
 final class SearchService
 {

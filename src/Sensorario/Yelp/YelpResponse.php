@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorario\Yelp\Response;
+namespace Sensorario\Yelp;
 
 final class YelpResponse
 {

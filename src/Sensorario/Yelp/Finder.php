@@ -1,11 +1,11 @@
 <?php
 
-namespace Sensorario\Yelp\Service;
+namespace Sensorario\Yelp;
 
-use Sensorario\Yelp\Request\YelpRequest;
-use Sensorario\Yelp\Response\YelpResponse;
-use Sensorario\Yelp\Service\SearchPathFactory;
-use Sensorario\Yelp\Service\SearchService;
+use Sensorario\Yelp\YelpRequest;
+use Sensorario\Yelp\YelpResponse;
+use Sensorario\Yelp\SearchPathFactory;
+use Sensorario\Yelp\SearchService;
 
 final class Finder
 {

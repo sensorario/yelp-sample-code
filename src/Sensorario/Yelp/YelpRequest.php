@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorario\Yelp\Request;
+namespace Sensorario\Yelp;
 
 use Exception;
 use OAuthConsumer;
