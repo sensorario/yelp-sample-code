@@ -2,10 +2,11 @@
 
 namespace Sensorario\Yelp\Request;
 
+use Exception;
 use OAuthConsumer;
+use OAuthRequest;
 use OAuthSignatureMethod_HMAC_SHA1;
 use OAuthToken;
-use OAuthRequest;
 
 final class YelpRequest
 {
