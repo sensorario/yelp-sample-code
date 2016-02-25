@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
 
-require '../vendor/autoload.php';
-require_once('../lib/OAuth.php');
+require 'vendor/autoload.php';
+require_once('lib/OAuth.php');
 
 use Sensorario\Yelp\Request\YelpRequest;
 use Sensorario\Yelp\Response\YelpResponse;
