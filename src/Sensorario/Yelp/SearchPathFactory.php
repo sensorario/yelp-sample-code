@@ -22,19 +22,24 @@ final class SearchPathFactory
 
     public function buildGenericSearch()
     {
-        $config = $this->properties['config']['yelp']['search'];
+        $queryString = http_build_query(
+            $this->properties['config']['yelp']['search']
+        );
 
-        $queryString = http_build_query($config);
-
-        return SearchPath::withString(
+        return $this->buildSearch(
             $searchPath = '/v2/search/' . "?" . $queryString
         );
     }
 
     public function buildBusinessSearch($businessId)
     {
-        return SearchPath::withString(
+        return $this->buildSearch(
             $businessItem = '/v2/business/' . $businessId
         );
+    }
+
+    public function buildSearch($path)
+    {
+        return SearchPath::withString($path);
     }
 }
