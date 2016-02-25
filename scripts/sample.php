@@ -25,8 +25,8 @@ $yelpResponse = $searchService->search(
 
 print sprintf(
     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-    $businessNumber = $yelpResponse->numberOfBusinesses(),
-    $businessId = $yelpResponse->currentBusinessId()
+    $businessNumber = count($yelpResponse->getContent()->businesses),
+    $businessId = $yelpResponse->getContent()->businesses[0]->id
 );
 
 $yelpResponse = $searchService->search(

@@ -23,21 +23,4 @@ final class YelpResponse
         return $this
             ->properties['jsonResponse'];
     }
-
-    public function currentBusinessId()
-    {
-        return $this
-            ->properties['jsonResponse']
-            ->businesses[0]
-            ->id;
-    }
-
-    public function numberOfBusinesses()
-    {
-        $businesses = $this
-            ->properties['jsonResponse']
-            ->businesses;
-
-        return count($businesses);
-    }
 }
