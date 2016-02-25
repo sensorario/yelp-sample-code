@@ -18,19 +18,25 @@ final class Finder
 
     public function genericSearch()
     {
-        return $this->searchService->search(
-            $this->yelpRequest,
+        return $this->search(
             $this->searchFactory->buildGenericSearch()
         );
     }
 
     public function businessSearch($businessId)
     {
-        return $this->searchService->search(
-            $this->yelpRequest,
+        return $this->search(
             $this->searchFactory->buildBusinessSearch(
                 $businessId
             )
+        );
+    }
+
+    private function search($search)
+    {
+        return $this->searchService->search(
+            $this->yelpRequest,
+            $search
         );
     }
 }
