@@ -23,12 +23,12 @@ final class SearchPathFactory
     public function buildGenericSearch()
     {
         $queryString = http_build_query([
-            'category_filter' => 'pubs',
-            'cc'              => 'IT',
-            'lang'            => 'it',
+            'category_filter' => $this->properties['config']['yelp']['search']['category_filter'],
+            'cc'              => $this->properties['config']['yelp']['search']['cc'],
+            'lang'            => $this->properties['config']['yelp']['search']['lang'],
             'limit'           => $this->properties['config']['yelp']['search']['limit'],
             'location'        => $this->properties['config']['yelp']['search']['location'],
-            'term'            => 'ghost',
+            'term'            => $this->properties['config']['yelp']['search']['term'],
         ]);
 
         return SearchPath::withString(
