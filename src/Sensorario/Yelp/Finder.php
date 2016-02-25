@@ -9,24 +9,31 @@ use Sensorario\Yelp\SearchService;
 
 final class Finder
 {
+    private $collaborators = [
+        'yelpRequest',
+        'searchService',
+        'searchPathFactory',
+    ];
+
     public function __construct($config)
     {
-        $this->yelpRequest = YelpRequest::fromConfiguration($config);
-        $this->searchService = SearchService::fromConfiguration($config);
-        $this->searchFactory = SearchPathFactory::fromConfiguration($config);
+        foreach ($this->collaborators as $collaborator) {
+            $collaboratorName = 'Sensorario\\Yelp\\' . ucfirst($collaborator);
+            $this->$collaborator = $collaboratorName::fromConfiguration($config);
+        }
     }
 
     public function genericSearch()
     {
         return $this->search(
-            $this->searchFactory->buildGenericSearch()
+            $this->searchPathFactory->buildGenericSearch()
         );
     }
 
     public function businessSearch($businessId)
     {
         return $this->search(
-            $this->searchFactory->buildBusinessSearch(
+            $this->searchPathFactory->buildBusinessSearch(
                 $businessId
             )
         );
