@@ -4,13 +4,15 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
+use Sensorario\Yelp\Configuration;
 use Sensorario\Yelp\FinderService;
 use Sensorario\Yelp\SearchPathFactory;
-use Sensorario\Yelp\Configuration;
+use Sensorario\Yelp\SearchService;
 
 $finder = new FinderService(
     new Configuration(),
-    new SearchPathFactory()
+    new SearchPathFactory(),
+    new SearchService()
 );
 
 $yelpResponse = $finder->genericSearch();

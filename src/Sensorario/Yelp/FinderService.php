@@ -11,12 +11,12 @@ final class FinderService
 {
     private $collaborators = [
         'yelpRequest',
-        'searchService',
     ];
 
     public function __construct(
         Configuration $config,
-        SearchPathFactory $searchPathFactory
+        SearchPathFactory $searchPathFactory,
+        SearchService $searchService
     ) {
         foreach ($this->collaborators as $collaborator) {
             $collaboratorName = 'Sensorario\\Yelp\\' . ucfirst($collaborator);
@@ -26,6 +26,7 @@ final class FinderService
             );
         }
 
+        $this->searchService = $searchService;
         $this->searchPathFactory = $searchPathFactory
             ->withConfiguration(
                 $config->getConfig()

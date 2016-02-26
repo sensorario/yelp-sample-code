@@ -4,7 +4,7 @@ namespace Sensorario\Yelp;
 
 use Sensorario\Yelp\SearchPath;
 
-final class SearchPathFactory
+class SearchPathFactory
 {
     private $configuration;
 
