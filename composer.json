@@ -1,10 +1,14 @@
 {
     "require": {
-        "symfony/yaml": "^3.0"
+        "symfony/yaml": "^3.0",
+        "phpunit/phpunit": "^4.8"
     },
     "autoload": {
         "classmap": [
             "src/"
         ]
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }

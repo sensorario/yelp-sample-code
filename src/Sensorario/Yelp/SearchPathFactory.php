@@ -6,24 +6,19 @@ use Sensorario\Yelp\SearchPath;
 
 final class SearchPathFactory
 {
-    private $properties;
+    private $configuration;
 
-    private function __construct(array $properties)
+    public function withConfiguration(array $configuration)
     {
-        $this->properties = $properties;
-    }
+        $this->configuration = $configuration;
 
-    public static function fromConfiguration(array $config)
-    {
-        return new self([
-            'config' => $config
-        ]);
+        return $this;
     }
 
     public function buildGenericSearch()
     {
         $queryString = http_build_query(
-            $this->properties['config']['yelp']['search']
+            $this->configuration['yelp']['search']
         );
 
         return $this->buildSearch(
