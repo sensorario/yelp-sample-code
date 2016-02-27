@@ -6,9 +6,9 @@ require __DIR__ . '/../../../../lib/OAuth.php';
 
 use PHPUnit_Framework_TestCase;
 use Sensorario\Yelp\Configuration;
-use Sensorario\Yelp\FinderService;
+use Sensorario\Yelp\Scerlock;
 
-final class FinderServiceTest extends PHPUnit_Framework_TestCase
+final class ScerlockTest extends PHPUnit_Framework_TestCase
 {
     public function testGenericSearch()
     {
@@ -23,7 +23,7 @@ final class FinderServiceTest extends PHPUnit_Framework_TestCase
         $searchService = $this->getMockBuilder('Sensorario\Yelp\SearchService')
             ->getMock();
         
-        $service = new FinderService(
+        $service = new Scerlock(
             new Configuration(),
             $searchPathFactory,
             $searchService,

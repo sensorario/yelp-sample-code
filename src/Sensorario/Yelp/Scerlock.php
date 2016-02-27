@@ -7,7 +7,7 @@ use Sensorario\Yelp\YelpResponse;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
 
-final class FinderService
+final class Scerlock
 {
     public function __construct(
         Configuration $config,
