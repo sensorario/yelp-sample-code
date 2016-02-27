@@ -10,20 +10,13 @@ use Sensorario\Yelp\SearchService;
 final class Scerlock
 {
     public function __construct(
-        Configuration $config,
         SearchPathFactory $searchPathFactory,
         SearchService $searchService,
         YelpRequest $yelpRequest
     ) {
         $this->searchService = $searchService;
-        $this->searchPathFactory = $searchPathFactory
-            ->withConfiguration(
-                $config->getConfig()
-            );
-        $this->yelpRequest = $yelpRequest
-            ->withConfiguration(
-                $config->getConfig()
-            );
+        $this->searchPathFactory = $searchPathFactory;
+        $this->yelpRequest = $yelpRequest;
     }
 
     public function genericSearch()

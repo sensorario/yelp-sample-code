@@ -8,11 +8,10 @@ class SearchPathFactory
 {
     private $configuration;
 
-    public function withConfiguration(array $configuration)
+    public function __construct()
     {
-        $this->configuration = $configuration;
-
-        return $this;
+        $this->configuration = (new Configuration())
+            ->getConfig();
     }
 
     public function buildGenericSearch()
