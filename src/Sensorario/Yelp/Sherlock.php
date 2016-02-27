@@ -7,7 +7,7 @@ use Sensorario\Yelp\YelpResponse;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
 
-final class Scerlock
+final class Sherlock
 {
     public function __construct(
         SearchPathFactory $searchPathFactory,
