@@ -7,12 +7,12 @@ require __DIR__ . '/../lib/OAuth.php';
 use Sensorario\Yelp\Sherlock;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
-use Sensorario\Yelp\YelpRequest;
+use Sensorario\Yelp\YelpClient;
 
 $finder = new Sherlock(
     new SearchPathFactory(),
     new SearchService(),
-    new YelpRequest()
+    new YelpClient()
 );
 
 $yelpResponse = $finder->genericSearch();

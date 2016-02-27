@@ -3,13 +3,13 @@
 namespace Sensorario\Yelp;
 
 use Sensorario\Yelp\Path;
-use Sensorario\Yelp\YelpRequest;
+use Sensorario\Yelp\YelpClient;
 use Sensorario\Yelp\YelpResponse;
 
 class SearchService
 {
     public function search(
-        YelpRequest $yelpRequest,
+        YelpClient $yelpRequest,
         Path $path
     ) {
         return YelpResponse::fromHttpResponse(
