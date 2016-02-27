@@ -16,6 +16,10 @@ yelp:
     search:
         location: Milano
         limit: 3
+        term: ghost
+        lang: it
+        category_filter: pubs
+        cc: IT
     api_host: api.yelp.com
 ```
 
