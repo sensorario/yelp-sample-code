@@ -16,7 +16,7 @@ class YelpClient
             ->getConfig();
     }
 
-    public function withPath($path) {
+    public function requestPath($path) {
         $host = $this->configuration['yelp']['api_host'];
 
         $unsignedUrl = "https://" . $host . $path;

@@ -20,12 +20,8 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
             ->setMethods(['search'])
             ->getMock();
         
-        $searchService = $this->getMockBuilder('Sensorario\Yelp\SearchService')
-            ->getMock();
-        
         $service = new Sherlock(
             $searchPathFactory,
-            $searchService,
             $yelpClient
         );
 

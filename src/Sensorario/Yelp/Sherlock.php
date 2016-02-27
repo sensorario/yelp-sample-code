@@ -5,16 +5,13 @@ namespace Sensorario\Yelp;
 use Sensorario\Yelp\YelpClient;
 use Sensorario\Yelp\YelpResponse;
 use Sensorario\Yelp\SearchPathFactory;
-use Sensorario\Yelp\SearchService;
 
 final class Sherlock
 {
     public function __construct(
         SearchPathFactory $searchPathFactory,
-        SearchService $searchService,
         YelpClient $yelpClient
     ) {
-        $this->searchService = $searchService;
         $this->searchPathFactory = $searchPathFactory;
         $this->yelpClient = $yelpClient;
     }
@@ -37,9 +34,10 @@ final class Sherlock
 
     private function search($search)
     {
-        return $this->searchService->search(
-            $this->yelpClient,
-            $search
+        return YelpResponse::fromHttpResponse(
+            $this->yelpClient->requestPath(
+                $search->getPath()
+            )
         );
     }
 }
