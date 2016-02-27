@@ -4,12 +4,12 @@
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
-use Sensorario\Yelp\Scerlock;
+use Sensorario\Yelp\Sherlock;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
 use Sensorario\Yelp\YelpRequest;
 
-$finder = new Scerlock(
+$finder = new Sherlock(
     new SearchPathFactory(),
     new SearchService(),
     new YelpRequest()
