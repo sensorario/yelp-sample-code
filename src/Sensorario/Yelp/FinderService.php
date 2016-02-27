@@ -9,25 +9,18 @@ use Sensorario\Yelp\SearchService;
 
 final class FinderService
 {
-    private $collaborators = [
-        'yelpRequest',
-    ];
-
     public function __construct(
         Configuration $config,
         SearchPathFactory $searchPathFactory,
-        SearchService $searchService
+        SearchService $searchService,
+        YelpRequest $yelpRequest
     ) {
-        foreach ($this->collaborators as $collaborator) {
-            $collaboratorName = 'Sensorario\\Yelp\\' . ucfirst($collaborator);
-
-            $this->$collaborator = $collaboratorName::fromConfiguration(
-                $config->getConfig()
-            );
-        }
-
         $this->searchService = $searchService;
         $this->searchPathFactory = $searchPathFactory
+            ->withConfiguration(
+                $config->getConfig()
+            );
+        $this->yelpRequest = $yelpRequest
             ->withConfiguration(
                 $config->getConfig()
             );

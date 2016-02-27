@@ -16,13 +16,18 @@ final class FinderServiceTest extends PHPUnit_Framework_TestCase
             ->setMethods(['search'])
             ->getMock();
         
+        $yelpRequest = $this->getMockBuilder('Sensorario\Yelp\YelpRequest')
+            ->setMethods(['search'])
+            ->getMock();
+        
         $searchService = $this->getMockBuilder('Sensorario\Yelp\SearchService')
             ->getMock();
         
         $service = new FinderService(
             new Configuration(),
             $searchPathFactory,
-            $searchService
+            $searchService,
+            $yelpRequest
         );
 
         $service->genericSearch();

@@ -8,11 +8,13 @@ use Sensorario\Yelp\Configuration;
 use Sensorario\Yelp\FinderService;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\SearchService;
+use Sensorario\Yelp\YelpRequest;
 
 $finder = new FinderService(
     new Configuration(),
     new SearchPathFactory(),
-    new SearchService()
+    new SearchService(),
+    new YelpRequest()
 );
 
 $yelpResponse = $finder->genericSearch();
