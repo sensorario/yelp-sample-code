@@ -24,7 +24,6 @@ final class ScerlockTest extends PHPUnit_Framework_TestCase
             ->getMock();
         
         $service = new Scerlock(
-            new Configuration(),
             $searchPathFactory,
             $searchService,
             $yelpRequest
