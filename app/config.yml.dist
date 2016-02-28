@@ -7,8 +7,14 @@ yelp:
     search:
         location: Milano
         limit: 3
-        term: ghost
+        term: Fox
         lang: it
         category_filter: pubs
+        cc: IT
+        actionslink: true
+    business:
+        id: old-fox-pub-milano
+    phone_search:
+        phone: '0289402622'
         cc: IT
     api_host: api.yelp.com

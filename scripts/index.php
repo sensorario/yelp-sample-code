@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -15,7 +14,7 @@ $sherlock = new Sherlock(
 
 echo "\n";
 $response = $sherlock->genericSearch();
-var_export($response);
+print_r($response);
 
 echo "\n";
 $response = $sherlock->businessSearch();
