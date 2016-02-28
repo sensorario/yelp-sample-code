@@ -8,7 +8,7 @@ use OAuthRequest;
 use OAuthSignatureMethod_HMAC_SHA1;
 use OAuthToken;
 
-class YelpClient
+class HttpClient
 {
     public function __construct()
     {
