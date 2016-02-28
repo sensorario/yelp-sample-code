@@ -8,7 +8,7 @@ use OAuthRequest;
 use OAuthSignatureMethod_HMAC_SHA1;
 use OAuthToken;
 
-class YelpClient
+class HttpClient
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class YelpClient
             ->getConfig();
     }
 
-    public function withPath($path) {
+    public function requestPath($path) {
         $host = $this->configuration['yelp']['api_host'];
 
         $unsignedUrl = "https://" . $host . $path;

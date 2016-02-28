@@ -6,21 +6,19 @@ require __DIR__ . '/../lib/OAuth.php';
 
 use Sensorario\Yelp\Sherlock;
 use Sensorario\Yelp\SearchPathFactory;
-use Sensorario\Yelp\SearchService;
-use Sensorario\Yelp\YelpClient;
+use Sensorario\Yelp\HttpClient;
 
 $finder = new Sherlock(
     new SearchPathFactory(),
-    new SearchService(),
-    new YelpClient()
+    new HttpClient()
 );
 
-$yelpResponse = $finder->genericSearch();
+$response = json_decode($finder->genericSearch());
 
 print sprintf(
     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-    $businessNumber = count($yelpResponse->getContent()->businesses),
-    $businessId = $yelpResponse->getContent()->businesses[0]->id
+    $businessNumber = count($response->businesses),
+    $businessId = $response->businesses[0]->id
 );
 
 print sprintf(
@@ -28,11 +26,11 @@ print sprintf(
     $businessId
 );
 
-$yelpResponse = $finder->businessSearch($businessId);
+$response = json_decode($finder->businessSearch($businessId));
 
 print sprintf(
     print_r(
-        $yelpResponse->getContent(),
+        $response,
         true
     )
 );
