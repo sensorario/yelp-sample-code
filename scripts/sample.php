@@ -13,24 +13,14 @@ $sherlock = new Sherlock(
     new HttpClient()
 );
 
-$response = json_decode($sherlock->genericSearch());
+echo "\n";
+$response = $sherlock->genericSearch();
+var_export($response);
 
-print sprintf(
-    "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-    $businessNumber = count($response->businesses),
-    $businessId = $response->businesses[0]->id
-);
+echo "\n";
+$response = $sherlock->businessSearch();
+var_export($response);
 
-print sprintf(
-    "Result for business \"%s\" found:\n",
-    $businessId
-);
-
-$response = json_decode($sherlock->businessSearch($businessId));
-
-print sprintf(
-    print_r(
-        $response,
-        true
-    )
-);
+echo "\n";
+$response = $sherlock->phoneSearch();
+var_export($response);

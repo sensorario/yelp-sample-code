@@ -23,12 +23,17 @@ final class Sherlock
         );
     }
 
-    public function businessSearch($businessId)
+    public function businessSearch()
     {
         return $this->httpClient->requestPath(
-            $this->searchPathFactory->buildBusinessSearch(
-                $businessId
-            )
+            $this->searchPathFactory->buildBusinessSearch()
+        );
+    }
+
+    public function phoneSearch()
+    {
+        return $this->httpClient->requestPath(
+            $this->searchPathFactory->phoneSearch()
         );
     }
 }
