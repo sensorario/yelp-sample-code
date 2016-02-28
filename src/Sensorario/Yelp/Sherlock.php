@@ -18,22 +18,17 @@ final class Sherlock
 
     public function genericSearch()
     {
-        return $this->search(
+        return $this->httpClient->requestPath(
             $this->searchPathFactory->buildGenericSearch()
         );
     }
 
     public function businessSearch($businessId)
     {
-        return $this->search(
+        return $this->httpClient->requestPath(
             $this->searchPathFactory->buildBusinessSearch(
                 $businessId
             )
         );
-    }
-
-    private function search($path)
-    {
-        return $this->httpClient->requestPath($path);
     }
 }
