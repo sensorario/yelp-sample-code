@@ -8,12 +8,12 @@ use Sensorario\Yelp\Sherlock;
 use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\HttpClient;
 
-$finder = new Sherlock(
+$sherlock = new Sherlock(
     new SearchPathFactory(),
     new HttpClient()
 );
 
-$response = json_decode($finder->genericSearch());
+$response = json_decode($sherlock->genericSearch());
 
 print sprintf(
     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
@@ -26,7 +26,7 @@ print sprintf(
     $businessId
 );
 
-$response = json_decode($finder->businessSearch($businessId));
+$response = json_decode($sherlock->businessSearch($businessId));
 
 print sprintf(
     print_r(
