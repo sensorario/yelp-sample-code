@@ -33,7 +33,7 @@ final class Sherlock
     public function phoneSearch()
     {
         return $this->httpClient->requestPath(
-            $this->searchPathFactory->phoneSearch()
+            $this->searchPathFactory->buildPhoneSearch()
         );
     }
 }

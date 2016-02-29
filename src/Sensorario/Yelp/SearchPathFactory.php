@@ -12,7 +12,7 @@ class SearchPathFactory
             ->getConfig();
     }
 
-    public function phoneSearch()
+    public function buildPhoneSearch()
     {
         $queryString = http_build_query(
             $this->configuration['yelp']['phone_search']
