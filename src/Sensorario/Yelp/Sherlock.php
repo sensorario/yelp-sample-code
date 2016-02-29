@@ -3,7 +3,6 @@
 namespace Sensorario\Yelp;
 
 use Sensorario\Yelp\HttpClient;
-use Sensorario\Yelp\YelpResponse;
 use Sensorario\Yelp\SearchPathFactory;
 
 final class Sherlock
