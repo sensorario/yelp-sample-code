@@ -13,13 +13,13 @@ $sherlock = new Sherlock(
 );
 
 echo "\n";
-$response = $sherlock->genericSearch();
+$response = $sherlock->find('search');
 print_r($response);
 
 echo "\n";
-$response = $sherlock->businessSearch();
+$response = $sherlock->find('business');
 var_export($response);
 
 echo "\n";
-$response = $sherlock->phoneSearch();
+$response = $sherlock->find('phone_search');
 var_export($response);

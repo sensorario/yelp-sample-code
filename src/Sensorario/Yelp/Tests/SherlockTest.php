@@ -25,6 +25,6 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
             $httpClient
         );
 
-        $service->genericSearch();
+        $service->find('search');
     }
 }

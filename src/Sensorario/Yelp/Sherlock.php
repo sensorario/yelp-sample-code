@@ -16,24 +16,10 @@ final class Sherlock
         $this->httpClient = $httpClient;
     }
 
-    public function genericSearch()
+    public function find($search)
     {
         return $this->httpClient->requestPath(
-            $this->searchPathFactory->buildGenericSearch()
-        );
-    }
-
-    public function businessSearch()
-    {
-        return $this->httpClient->requestPath(
-            $this->searchPathFactory->buildBusinessSearch()
-        );
-    }
-
-    public function phoneSearch()
-    {
-        return $this->httpClient->requestPath(
-            $this->searchPathFactory->buildPhoneSearch()
+            $this->searchPathFactory->buildSearch($search)
         );
     }
 }

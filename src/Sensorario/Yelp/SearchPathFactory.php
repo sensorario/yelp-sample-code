@@ -12,28 +12,18 @@ class SearchPathFactory
             ->getConfig();
     }
 
-    public function buildPhoneSearch()
+    public function buildSearch($search)
     {
+        if ('business' === $search) {
+            $businessId = $this->configuration['yelp']['business']['id'];
+
+            return '/v2/business/' . $businessId;
+        }
+
         $queryString = http_build_query(
-            $this->configuration['yelp']['phone_search']
+            $this->configuration['yelp'][$search]
         );
 
-        return '/v2/phone_search/' . "?" . $queryString;
-    }
-    
-    public function buildGenericSearch()
-    {
-        $queryString = http_build_query(
-            $this->configuration['yelp']['search']
-        );
-
-        return '/v2/search/' . "?" . $queryString;
-    }
-
-    public function buildBusinessSearch()
-    {
-        $businessId = $this->configuration['yelp']['business']['id'];
-
-        return '/v2/business/' . $businessId;
+        return '/v2/' . $search . '/' . "?" . $queryString;
     }
 }
