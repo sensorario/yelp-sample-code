@@ -3,22 +3,36 @@
 namespace Sensorario\Yelp;
 
 use Sensorario\Yelp\HttpClient;
-use Sensorario\Yelp\SearchPathFactory;
 
 final class Sherlock
 {
     public function __construct(
-        SearchPathFactory $searchPathFactory,
         HttpClient $httpClient
     ) {
-        $this->searchPathFactory = $searchPathFactory;
         $this->httpClient = $httpClient;
+        $this->configuration = (new Configuration())
+            ->getConfig();
     }
 
     public function find($search)
     {
         return $this->httpClient->requestPath(
-            $this->searchPathFactory->buildSearch($search)
+            $this->buildSearch($search)
         );
+    }
+
+    public function buildSearch($search)
+    {
+        if ('business' === $search) {
+            $businessId = $this->configuration['yelp']['business']['id'];
+
+            return '/v2/business/' . $businessId;
+        }
+
+        $queryString = http_build_query(
+            $this->configuration['yelp'][$search]
+        );
+
+        return '/v2/' . $search . '/' . "?" . $queryString;
     }
 }

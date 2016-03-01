@@ -12,16 +12,11 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
 {
     public function testGenericSearch()
     {
-        $searchPathFactory = $this->getMockBuilder('Sensorario\Yelp\SearchPathFactory')
-            ->setMethods(['search'])
-            ->getMock();
-        
         $httpClient = $this->getMockBuilder('Sensorario\Yelp\HttpClient')
             ->setMethods(['search'])
             ->getMock();
         
         $service = new Sherlock(
-            $searchPathFactory,
             $httpClient
         );
 

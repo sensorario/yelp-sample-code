@@ -4,11 +4,9 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../lib/OAuth.php';
 
 use Sensorario\Yelp\Sherlock;
-use Sensorario\Yelp\SearchPathFactory;
 use Sensorario\Yelp\HttpClient;
 
 $sherlock = new Sherlock(
-    new SearchPathFactory(),
     new HttpClient()
 );
 
