@@ -16,32 +16,85 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
+class Foo
+{
+    public static function bar(
+        Request $request,
+        array $parameters
+    ) {
+        $sherlock = new Sherlock(new HttpClient());
+        $response = $sherlock->find('business', $parameters['id']);
+        var_export($response);
+    }
+
+    public static function home(
+        Request $request,
+        array $parameters
+    ) {
+        echo "ancora da implementare";
+    }
+
+    public static function search(
+        Request $request,
+        array $parameters
+    ) {
+        $sherlock = new Sherlock(new HttpClient());
+        $response = $sherlock->find('search');
+        print_r($response);
+    }
+
+    public static function phone(
+        Request $request,
+        array $parameters
+    ) {
+        $sherlock = new Sherlock(new HttpClient());
+        $response = $sherlock->find('phone_search');
+        var_export($response);
+    }
+}
+
+
 $log = new Logger('parameters');
 $log->pushHandler(new StreamHandler(__DIR__ . '/../app/logs/parameters.log', Logger::INFO));
 
+
 $routes = new RouteCollection();
+
+
 $routes->add('business', new Route('/business/{id}', array(
-    'controller' => 'foo',
-    'action' => 'ciao'
+    'controller' => 'Foo',
+    'action' => 'bar',
 )));
 
+
+$routes->add('home', new Route('/', array(
+    'controller' => 'Foo',
+    'action' => 'home',
+)));
+
+
+$routes->add('search', new Route('/search/{term}', array(
+    'controller' => 'Foo',
+    'action' => 'search',
+)));
+
+
+$routes->add('phone', new Route('/phone/{phone}', array(
+    'controller' => 'Foo',
+    'action' => 'phone',
+)));
+
+
 $context = new RequestContext();
-$context->fromRequest(Request::createFromGlobals());
+$context->fromRequest($request = Request::createFromGlobals());
+
 
 $matcher = new UrlMatcher($routes, $context);
 $parameters = $matcher->match($context->getPathInfo());
-
 $log->addInfo(json_encode($parameters));
 
-$sherlock = new Sherlock(new HttpClient());
-$response = $sherlock->find('business', $parameters['id']);
-print_r($response);
 
-// echo "\n";
-// $response = $sherlock->find('search');
-// print_r($response);
-// 
-// 
-// echo "\n";
-// $response = $sherlock->find('phone_search');
-// var_export($response);
+$parameters['controller']::$parameters['action'](
+    $request,
+    $parameters
+);
