@@ -1,7 +1,10 @@
 {
     "require": {
         "symfony/yaml": "^3.0",
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^4.8",
+        "symfony/routing": "^3.0",
+        "symfony/http-foundation": "^3.0",
+        "monolog/monolog": "^1.18"
     },
     "autoload": {
         "classmap": [

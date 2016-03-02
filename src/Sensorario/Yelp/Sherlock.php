@@ -14,19 +14,17 @@ final class Sherlock
             ->getConfig();
     }
 
-    public function find($search)
+    public function find($search, $id = null)
     {
         return $this->httpClient->requestPath(
-            $this->buildSearch($search)
+            $this->buildSearch($search, $id)
         );
     }
 
-    public function buildSearch($search)
+    public function buildSearch($search, $id)
     {
         if ('business' === $search) {
-            $businessId = $this->configuration['yelp']['business']['id'];
-
-            return '/v2/business/' . $businessId;
+            return '/v2/business/' . $id;
         }
 
         $queryString = http_build_query(
