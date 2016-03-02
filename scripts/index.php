@@ -51,6 +51,14 @@ class Foo
         $response = $sherlock->find('phone_search');
         var_export($response);
     }
+
+    public static function pageNotFound(
+        Request $request,
+        array $parameters
+    ) {
+        echo "La richiesta e' invalida";
+        echo "<a href=\"/\">Vai in homepage</a>";
+    }
 }
 
 
@@ -90,9 +98,15 @@ $context->fromRequest($request = Request::createFromGlobals());
 
 
 $matcher = new UrlMatcher($routes, $context);
-$parameters = $matcher->match($context->getPathInfo());
-$log->addInfo(json_encode($parameters));
-
+try {
+    $parameters = $matcher->match($context->getPathInfo());
+    $log->addInfo(json_encode($parameters));
+} catch (Exception $exception) {
+    $parameters = [
+        'controller' => 'Foo',
+        'action' => 'pageNotFound'
+    ];
+}
 
 $parameters['controller']::$parameters['action'](
     $request,
