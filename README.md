@@ -1,8 +1,8 @@
-# PHP Yelp Sample Code
+# PHP Yelp Wrapper
 
-This repository aims to talk with Yelp API.
+This is a wrapper for yelp api. It allow some nice requests, like /search/{something}/in/{location} instead of a complex query. Or /phone/+390000000000. It also use twig to render the content. Actually just json content.
 
-## Configurable
+## Configuration
 
 Copy app/config.yml.dist in your app/config.yml file and put here your Yelp configurations.
 
@@ -13,24 +13,17 @@ yelp:
         consumer_secret: ~
         token: ~
         token_secret: ~
-    search:
-        location: Milano
-        limit: 3
-        term: Fox
-        lang: it
-        category_filter: pubs
-        cc: IT
-        actionslink: true
-    business:
-        id: old-fox-pub-milano
-    phone_search:
-        phone: '0289402622'
-        cc: IT
     api_host: api.yelp.com
 ```
 
-### Run sample code
+### Run wrapper
 
 ```bash
-php scripts/sample.php
+php -S localhost:8888 -t scripts/
 ```
+
+This will opern default route. On top of the page there is a menu with a little preset of query.
+
+## Why this wrapper?
+
+Is just an exercise!
