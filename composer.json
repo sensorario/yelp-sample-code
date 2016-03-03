@@ -4,7 +4,8 @@
         "phpunit/phpunit": "^4.8",
         "symfony/routing": "^3.0",
         "symfony/http-foundation": "^3.0",
-        "monolog/monolog": "^1.18"
+        "monolog/monolog": "^1.18",
+        "twig/twig": "^1.24"
     },
     "autoload": {
         "classmap": [
