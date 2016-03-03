@@ -18,20 +18,32 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Foo
 {
-    public static function bar(
+    private $twig;
+
+    public function __construct($twig)
+    {
+        $this->twig = $twig;
+    }
+
+    public function bar(
         Request $request,
         array $parameters
     ) {
         $sherlock = new Sherlock(new HttpClient());
         $response = $sherlock->find('business', $parameters['id']);
-        var_export($response);
+
+        return $this->twig->render(
+            'viewer.html', [
+                'response' => $response
+            ]
+        );
     }
 
-    public static function home(
+    public function home(
         Request $request,
         array $parameters
     ) {
-        echo "ancora da implementare";
+        return $this->twig->render('home.html');
     }
 
     public static function search(
@@ -108,7 +120,16 @@ try {
     ];
 }
 
-$parameters['controller']::$parameters['action'](
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/../views');
+$twig = new Twig_Environment($loader, []);
+
+$controller = new $parameters['controller'](
+    $twig
+);
+
+$view = $controller->$parameters['action'](
     $request,
     $parameters
 );
+
+echo $view;

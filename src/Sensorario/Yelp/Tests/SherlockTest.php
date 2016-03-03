@@ -11,8 +11,10 @@ use Sensorario\Yelp\Sherlock;
 final class SherlockTest extends PHPUnit_Framework_TestCase
 {
     /** @dataProvider searches */
-    public function testGenericSearch($search)
-    {
+    public function testGenericSearch(
+        $search,
+        $id
+    ) {
         $httpClient = $this->getMockBuilder('Sensorario\Yelp\HttpClient')
             ->setMethods([$search])
             ->getMock();
@@ -21,15 +23,15 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
             $httpClient
         );
 
-        $service->find($search);
+        $service->find($search, $id);
     }
 
     public function searches()
     {
         return [
-            ['search'],
-            ['phone_search'],
-            ['business'],
+            ['search', null],
+            ['phone_search', null],
+            ['business', 'milano-centrale-milano'],
         ];
     }
 }
