@@ -13,7 +13,7 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
     /** @dataProvider searches */
     public function testGenericSearch(
         $search,
-        $id
+        $parameters
     ) {
         $httpClient = $this->getMockBuilder('Sensorario\Yelp\HttpClient')
             ->setMethods([$search])
@@ -23,15 +23,15 @@ final class SherlockTest extends PHPUnit_Framework_TestCase
             $httpClient
         );
 
-        $service->find($search, $id);
+        $service->find($search, $parameters);
     }
 
     public function searches()
     {
         return [
-            ['search', null],
-            ['phone_search', null],
-            ['business', 'milano-centrale-milano'],
+            ['search', ['term' => 'Milano Centrale', 'location' => 'Milano']],
+            ['phone_search', ['phone' => '+394353543']],
+            ['business', ['id' => 'milano-centrale-milano' ]],
         ];
     }
 }

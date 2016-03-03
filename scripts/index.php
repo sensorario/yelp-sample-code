@@ -30,7 +30,11 @@ class Foo
         array $parameters
     ) {
         $sherlock = new Sherlock(new HttpClient());
-        $response = $sherlock->find('business', $parameters['id']);
+
+        $response = $sherlock->find(
+            'business',
+            $parameters
+        );
 
         return $this->twig->render(
             'viewer.html', [
@@ -43,33 +47,53 @@ class Foo
         Request $request,
         array $parameters
     ) {
-        return $this->twig->render('home.html');
+        return $this->twig->render(
+            'home.html'
+        );
     }
 
-    public static function search(
+    public function search(
         Request $request,
         array $parameters
     ) {
         $sherlock = new Sherlock(new HttpClient());
-        $response = $sherlock->find('search');
-        print_r($response);
+
+        $response = $sherlock->find(
+            'search',
+            $parameters
+        );
+
+        return $this->twig->render(
+            'viewer.html', [
+                'response' => $response
+            ]
+        );
     }
 
-    public static function phone(
+    public function phone(
         Request $request,
         array $parameters
     ) {
         $sherlock = new Sherlock(new HttpClient());
-        $response = $sherlock->find('phone_search');
-        var_export($response);
+        $response = $sherlock->find(
+            'phone_search',
+            $parameters
+        );
+
+        return $this->twig->render(
+            'viewer.html', [
+                'response' => $response
+            ]
+        );
     }
 
-    public static function pageNotFound(
+    public function pageNotFound(
         Request $request,
         array $parameters
     ) {
-        echo "La richiesta e' invalida";
-        echo "<a href=\"/\">Vai in homepage</a>";
+        return $this->twig->render(
+            'pageNotFound.html', []
+        );
     }
 }
 
@@ -93,7 +117,7 @@ $routes->add('home', new Route('/', array(
 )));
 
 
-$routes->add('search', new Route('/search/{term}', array(
+$routes->add('search', new Route('/search/{term}/in/{location}', array(
     'controller' => 'Foo',
     'action' => 'search',
 )));

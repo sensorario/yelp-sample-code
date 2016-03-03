@@ -1,8 +1,7 @@
-<html>
-    <head>
-        <title>yelp</title>
-    </head>
-    <body>
-        <h1>Viewer</h1>
-    </body>
-</html>
+{% extends "_base.html" %}
+
+{% block title %}View{% endblock %}
+
+{% block content %}
+    {{ response }}
+{% endblock %}

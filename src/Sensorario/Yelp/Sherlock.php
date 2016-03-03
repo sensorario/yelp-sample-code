@@ -14,23 +14,41 @@ final class Sherlock
             ->getConfig();
     }
 
-    public function find($search, $id = null)
+    public function find($search, array $parameters)
     {
         return $this->httpClient->requestPath(
-            $this->buildSearch($search, $id)
+            $this->buildSearch(
+                $search,
+                $parameters
+            )
         );
     }
 
-    public function buildSearch($search, $id)
+    public function buildSearch($search, $parameters)
     {
         if ('business' === $search) {
-            return '/v2/business/' . $id;
+            return '/v2/business/' . $parameters['id'];
         }
 
-        $queryString = http_build_query(
-            $this->configuration['yelp'][$search]
-        );
+        if ('search' === $search) {
+            $queryString = http_build_query([
+                'term'     => $parameters['term'],
+                'location' => $parameters['location'],
+            ]);
 
-        return '/v2/' . $search . '/' . "?" . $queryString;
+            return '/v2/' . $search . '/' . "?" . $queryString;
+        }
+
+        if ('phone_search' === $search) {
+            $queryString = http_build_query([
+                'phone' => $parameters['phone'],
+            ]);
+
+            return '/v2/' . $search . '/' . "?" . $queryString;
+        }
+
+        throw new RuntimeException(
+            ''
+        );
     }
 }
