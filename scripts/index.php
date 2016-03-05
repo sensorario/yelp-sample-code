@@ -7,95 +7,12 @@ require __DIR__ . '/../lib/OAuth.php';
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Monolog\Formatter\JsonFormatter;
-use Sensorario\Yelp\HttpClient;
-use Sensorario\Yelp\Sherlock;
+use Sensorario\Yelp\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-
-class Foo
-{
-    private $twig;
-
-    public function __construct($twig)
-    {
-        $this->twig = $twig;
-    }
-
-    public function bar(
-        Request $request,
-        array $parameters
-    ) {
-        $sherlock = new Sherlock(new HttpClient());
-
-        $response = $sherlock->find(
-            'business',
-            $parameters
-        );
-
-        return $this->twig->render(
-            'viewer.html', [
-                'response' => $response
-            ]
-        );
-    }
-
-    public function home(
-        Request $request,
-        array $parameters
-    ) {
-        return $this->twig->render(
-            'home.html'
-        );
-    }
-
-    public function search(
-        Request $request,
-        array $parameters
-    ) {
-        $sherlock = new Sherlock(new HttpClient());
-
-        $response = $sherlock->find(
-            'search',
-            $parameters
-        );
-
-        return $this->twig->render(
-            'viewer.html', [
-                'response' => $response
-            ]
-        );
-    }
-
-    public function phone(
-        Request $request,
-        array $parameters
-    ) {
-        $sherlock = new Sherlock(new HttpClient());
-        $response = $sherlock->find(
-            'phone_search',
-            $parameters
-        );
-
-        return $this->twig->render(
-            'viewer.html', [
-                'response' => $response
-            ]
-        );
-    }
-
-    public function pageNotFound(
-        Request $request,
-        array $parameters
-    ) {
-        return $this->twig->render(
-            'pageNotFound.html', []
-        );
-    }
-}
 
 
 $log = new Logger('parameters');
@@ -106,25 +23,25 @@ $routes = new RouteCollection();
 
 
 $routes->add('business', new Route('/business/{id}', array(
-    'controller' => 'Foo',
+    'controller' => 'Sensorario\\Yelp\\Controller',
     'action' => 'bar',
 )));
 
 
 $routes->add('home', new Route('/', array(
-    'controller' => 'Foo',
+    'controller' => 'Sensorario\\Yelp\\Controller',
     'action' => 'home',
 )));
 
 
 $routes->add('search', new Route('/search/{term}/in/{location}', array(
-    'controller' => 'Foo',
+    'controller' => 'Controller',
     'action' => 'search',
 )));
 
 
 $routes->add('phone', new Route('/phone/{phone}', array(
-    'controller' => 'Foo',
+    'controller' => 'Controller',
     'action' => 'phone',
 )));
 
@@ -139,7 +56,7 @@ try {
     $log->addInfo(json_encode($parameters));
 } catch (Exception $exception) {
     $parameters = [
-        'controller' => 'Foo',
+        'controller' => 'Controller',
         'action' => 'pageNotFound'
     ];
 }
