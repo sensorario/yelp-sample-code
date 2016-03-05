@@ -35,13 +35,13 @@ $routes->add('home', new Route('/', array(
 
 
 $routes->add('search', new Route('/search/{term}/in/{location}', array(
-    'controller' => 'Controller',
+    'controller' => 'Sensorario\\Yelp\\Controller',
     'action' => 'search',
 )));
 
 
 $routes->add('phone', new Route('/phone/{phone}', array(
-    'controller' => 'Controller',
+    'controller' => 'Sensorario\\Yelp\\Controller',
     'action' => 'phone',
 )));
 
